@@ -123,7 +123,7 @@ $custom = [
                         Configuration::STATE_DEFAULT,
                     ],
                     [
-                        'Canceled',
+                        TranslateUtility::getLll('canceled'),
                         Configuration::STATE_CANCELED,
                     ],
                 ],

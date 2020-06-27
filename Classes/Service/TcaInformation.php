@@ -73,6 +73,9 @@ class TcaInformation extends AbstractService
      */
     protected function getEventList($events)
     {
+        // !ian: set locale to translate days names in dates list in BE
+        setlocale(LC_TIME, 'it_IT.UTF-8', 'it_IT', 'Italian_Italy', 'Italian');
+
         $items = [];
         foreach ($events as $event) {
             if (!($event['start_date'] instanceof \DateTimeInterface)) {

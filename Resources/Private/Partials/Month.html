@@ -1,24 +1,37 @@
 {namespace c=HDNET\Calendarize\ViewHelpers}
 
+<f:variable name="firstDayOfLastMonthObj">{date -> c:dateTime.modify(modification: 'first day of last month')}</f:variable>
+<f:variable name="firstDayOfLastMonthTimestamp">{f:format.date(date: firstDayOfLastMonthObj, format: 'U')}</f:variable>
+<f:variable name="dateLimitBrowserPrevTimestamp">{f:format.date(date: settings.dateLimitBrowserPrev, format: 'U')}</f:variable>
+<f:variable name="firstDayOfNextMonthObj">{date -> c:dateTime.modify(modification: 'first day of next month')}</f:variable>
+<f:variable name="firstDayOfNextMonthTimestamp">{f:format.date(date: firstDayOfNextMonthObj, format: 'U')}</f:variable>
+<f:variable name="dateLimitBrowserNextTimestamp">{f:format.date(date: settings.dateLimitBrowserNext, format: 'U')}</f:variable>
+
 <table class="table table-bordered">
 	<thead>
 		<tr>
 			<th colspan="7">
+				<ul class="browse-pages">
 				<f:if condition="{settings.monthPid}">
-					<f:if condition="{c:ifDateUpper(base: settings.dateLimitBrowserPrev, check:{date -> c:dateTime.modify(modification: 'first day of last month')})}">
-						<c:link.month pageUid="{settings.monthPid}" date="{date -> c:dateTime.modify(modification: 'first day of last month')}">
-							&lt;
+					<f:if condition="{firstDayOfLastMonthTimestamp} > {dateLimitBrowserPrevTimestamp}">
+						<li class="previous">
+						<c:link.month class="url" pageUid="{settings.monthPid}" date="{date -> c:dateTime.modify(modification: 'first day of last month')}">
+							<p></p>
 						</c:link.month>
+						</li>
 					</f:if>
 				</f:if>
-				<f:format.date format="%B %Y">{date}</f:format.date>
+				<li class="current"><h2 class="browse-pages-headline"><f:format.date format="%B %Y">{date}</f:format.date></h2></li>
 				<f:if condition="{settings.monthPid}">
-					<f:if condition="{c:ifDateLower(base: settings.dateLimitBrowserNext, check:{date -> c:dateTime.modify(modification: 'first day of next month')})}">
-						<c:link.month pageUid="{settings.monthPid}" date="{date -> c:dateTime.modify(modification: 'first day of next month')}">
-							&gt;
+					<f:if condition="{firstDayOfNextMonthTimestamp} < {dateLimitBrowserNextTimestamp}">
+						<li class="next">
+						<c:link.month class="url" pageUid="{settings.monthPid}" date="{date -> c:dateTime.modify(modification: 'first day of next month')}">
+							<p></p>
 						</c:link.month>
+						</li>
 					</f:if>
 				</f:if>
+				</ul>
 			</th>
 		</tr>
 	</thead>

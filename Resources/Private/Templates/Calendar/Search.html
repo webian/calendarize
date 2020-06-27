@@ -1,4 +1,5 @@
-<f:form pageUid="{settings.listPid}">
+<div class="calendar-search-form">
+<f:form pageUid="{settings.listPid}" class="form-inline">
 	<div class="form-group">
 		<label for="calendarizeStartDate"><f:translate key="search.start_date" extensionName="Calendarize" /></label>
 		<f:form.textfield name="startDate" id="calendarizeStartDate" class="form-control" value="{startDate -> f:format.date(format: settings.dateFormat)}" />
@@ -14,3 +15,4 @@
 
 	<button type="submit" class="btn btn-primary"><f:translate key="search.button_label" extensionName="Calendarize" /></button>
 </f:form>
+</div>

@@ -32,17 +32,15 @@
 	</dl>
 
 	<f:if condition="{event.images}">
-		<div class="images">
-			<f:for each="{event.images}" as="image" iteration="i">
-				<f:image src="{image.uid}" treatIdAsReference="1" alt="" maxWidth="300" class="img-rounded"/>
-			</f:for>
-		</div>
+		<f:for each="{event.images}" as="image" iteration="i">
+			<f:image src="{image.uid}" treatIdAsReference="1" alt="" maxWidth="1920" class="img-{i.index} img-rounded"/>
+		</f:for>
 	</f:if>
 
 	<f:if condition="{event.downloads}">
 		<div class="downloads">
 			<f:for each="{event.downloads}" as="download" iteration="i">
-				<a href="{download.originalResource.publicUrl}">{download.originalResource.publicUrl}</a>
+				<a href="{download.originalResource.publicUrl}">{f:if(condition: '{download.originalResource.title}', then: '{download.originalResource.title}', else: '{download.originalResource.name}')}</a>
 			</f:for>
 		</div>
 	</f:if>
