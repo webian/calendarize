@@ -5,6 +5,7 @@
 		<div class="panel-body">
 
 			<div class="media calendarize-item">
+				<f:if condition="{settings.imageInList}">
 				<f:for each="{event.images}" as="image" iteration="i">
 					<f:if condition="{i.isFirst}">
 						<c:link.index index="{index}">
@@ -12,13 +13,9 @@
 						</c:link.index>
 					</f:if>
 				</f:for>
+				</f:if>
 
 				<div class="media-body">
-					<h2>
-						<c:link.index index="{index}">
-							<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
-						</c:link.index>
-					</h2>
 					<h4>
 						<f:if condition="{index.state}=='canceled'">
 							<f:then>
@@ -30,6 +27,13 @@
 						</f:if>
 					</h4>
 
+					<h3>
+						<c:link.index index="{index}">
+							<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
+						</c:link.index>
+					</h3>
+
+					<f:if condition="{settings.descriptionInList}">
 					<p>
 						<f:if condition="{event.abstract}">
 							<f:then>
@@ -42,8 +46,13 @@
 							</f:else>
 						</f:if>
 					</p>
+					</f:if>
 
-					<f:if condition="{settings.detailPid}">
+					<f:if condition="{settings.displayPrice}">
+						<p class="price">{event.price -> f:format.number(decimals: '2', decimalSeparator: ',', thousandsSeparator: '.')} &euro;</p>
+					</f:if>
+
+					<f:if condition="{settings.buttonInList}">
 						<c:link.index index="{index}" class="btn btn-default btn-primary">
 							<f:translate key="more"/>
 							<span class="glyphicon glyphicon-arrow-right"></span>

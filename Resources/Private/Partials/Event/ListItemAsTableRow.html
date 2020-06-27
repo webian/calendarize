@@ -1,0 +1,72 @@
+{namespace c=HDNET\Calendarize\ViewHelpers}
+
+<f:alias map="{event: index.originalObject}">
+	<tr class="state-{index.state}">
+		<f:if condition="{settings.imageInList}">
+		<td>
+		<f:for each="{event.images}" as="image" iteration="i">
+			<f:if condition="{i.isFirst}">
+				<c:link.index index="{index}">
+					<f:image src="{image.uid}" treatIdAsReference="1" alt="" maxWidth="160" maxHeight="160" class="media-object img-rounded" />
+				</c:link.index>
+			</f:if>
+		</f:for>
+		</td>
+		</f:if>
+
+		<td>
+			<f:if condition="{index.state}=='canceled'">
+				<f:then>
+					<f:translate key="canceled" />
+				</f:then>
+				<f:else>
+					<f:render partial="DateInformation" arguments="{index: index}"/>
+				</f:else>
+			</f:if>
+		</td>
+
+		<td>
+			<c:link.index index="{index}">
+				<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
+			</c:link.index>
+		</td>
+
+		<f:if condition="{settings.descriptionInList}">
+		<td>
+			<f:if condition="{event.abstract}">
+				<f:then>
+					<f:format.nl2br>{event.abstract}</f:format.nl2br>
+				</f:then>
+				<f:else>
+					<f:format.crop maxCharacters="180" append="&nbsp;[...]">
+						<f:format.stripTags>{event.description}</f:format.stripTags>
+					</f:format.crop>
+				</f:else>
+			</f:if>
+		</td>
+		</f:if>
+
+		<f:if condition="{settings.displayPrice}">
+			<td class="price">&euro;{event.price -> f:format.number(decimals: '2', decimalSeparator: '.')}</td>
+		</f:if>
+
+		<f:if condition="{settings.buttonInList}">
+			<td>
+			<c:link.index index="{index}" class="btn btn-default btn-primary">
+				<f:translate key="more"/>
+				<span class="glyphicon glyphicon-arrow-right"></span>
+			</c:link.index>
+			</td>
+		</f:if>
+
+		<f:if condition="{settings.bookingPid}">
+			<td>
+			<f:if condition="{event.bookable}">
+				<c:link.booking index="{index}" class="btn btn-default btn-primary">
+					<f:translate key="booking" /> <span class="glyphicon glyphicon-arrow-right"></span>
+				</c:link.booking>
+			</f:if>
+			</td>
+		</f:if>
+	</tr>
+</f:alias>

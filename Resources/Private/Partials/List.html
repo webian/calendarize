@@ -7,7 +7,10 @@
 		<f:if condition="{settings.hidePagination}">
 			<f:then>
 				<f:for each="{indices}" as="index">
-					<f:render partial="{index.configuration.partialIdentifier}/ListItem" arguments="{index: index}" />
+					<f:if condition="{settings.listAsTable}">
+						<f:then><f:render partial="{index.configuration.partialIdentifier}/ListItemAsTableRow" arguments="{index: index}" /></f:then>
+						<f:else><f:render partial="{index.configuration.partialIdentifier}/ListItem" arguments="{index: index}" /></f:else>
+					</f:if>
 				</f:for>
 			</f:then>
 			<f:else>
@@ -16,7 +19,10 @@
 						<f:widget.paginate objects="{indices}" as="paginatedIndices"
 															 configuration="{settings.paginateConfiguration}">
 							<f:for each="{paginatedIndices}" as="index">
-								<f:render partial="{index.configuration.partialIdentifier}/ListItem" arguments="{index: index}"/>
+								<f:if condition="{settings.listAsTable}">
+									<f:then><f:render partial="{index.configuration.partialIdentifier}/ListItemAsTableRow" arguments="{index: index}" /></f:then>
+									<f:else><f:render partial="{index.configuration.partialIdentifier}/ListItem" arguments="{index: index}" /></f:else>
+								</f:if>
 							</f:for>
 						</f:widget.paginate>
 					</f:then>

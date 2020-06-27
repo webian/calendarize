@@ -26,6 +26,15 @@ plugin.tx_calendarize {
 			language = {$plugin.tx_calendarize.settings.feed.language}
 			debugMode = {$plugin.tx_calendarize.settings.feed.debugMode}
 		}
+
+		# !ian: custom setting
+		listAsTable = 0
+		descriptionInList = 0
+		imageInList = 0
+		buttonInList = 0
+		displayAllDayText = 0
+		displayIcsButton = 1
+		displayPrice = 0
 	}
 
 	mvc.callDefaultActionIfActionCantBeResolved = 1

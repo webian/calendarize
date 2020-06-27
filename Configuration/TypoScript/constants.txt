@@ -11,7 +11,7 @@ plugin.tx_calendarize {
 		weekStart = 1
 
 		# cat=calendarize//0040; type=string; label=Date format: date format - http://php.net/manual/de/function.date.php
-		dateFormat = d.m.Y
+		dateFormat = d/m/Y
 
 		# cat=calendarize//0050; type=string; label=Time format: time format - http://php.net/manual/de/function.date.php
 		timeFormat = H:i

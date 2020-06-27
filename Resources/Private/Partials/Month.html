@@ -4,21 +4,27 @@
 	<thead>
 		<tr>
 			<th colspan="7">
+				<ul class="browse-pages">
 				<f:if condition="{settings.monthPid}">
 					<f:if condition="{c:ifDateUpper(base: settings.dateLimitBrowserPrev, check:{date -> c:dateTime.modify(modification: 'first day of last month')})}">
+						<li class="previous">
 						<c:link.month pageUid="{settings.monthPid}" date="{date -> c:dateTime.modify(modification: 'first day of last month')}" section="c{contentObject.uid}">
-							&lt;
+							<p></p>
 						</c:link.month>
+						</li>
 					</f:if>
 				</f:if>
-				<f:format.date format="%B %Y">{date}</f:format.date>
+				<li class="current"><h2 class="browse-pages-headline"><f:format.date format="%B %Y">{date}</f:format.date></h2></li>
 				<f:if condition="{settings.monthPid}">
 					<f:if condition="{c:ifDateLower(base: settings.dateLimitBrowserNext, check:{date -> c:dateTime.modify(modification: 'first day of next month')})}">
+						<li class="next">
 						<c:link.month pageUid="{settings.monthPid}" date="{date -> c:dateTime.modify(modification: 'first day of next month')}" section="c{contentObject.uid}">
-							&gt;
+							<p></p>
 						</c:link.month>
+						</li>
 					</f:if>
 				</f:if>
+				</ul>
 			</th>
 		</tr>
 	</thead>

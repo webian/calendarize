@@ -1,5 +1,61 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
-	<f:render partial="List" arguments="{settings: settings, indices: indices, searchParameter: searchParameter, searchMode: searchMode,contentObject:contentObject}" />
+	<f:if condition="{settings.listAsTable}">
+		<f:then>
+			<table class="calendar-list table-hover table-striped"
+						 data-toggle="table"
+						 data-locale="it-IT"
+						 data-search="true"
+						 data-show-fullscreen="true"
+						 data-show-footer="true"
+						 data-search-align="left"
+			>
+				<thead>
+					<tr>
+						<f:if condition="{settings.imageInList}"><th data-field="image">Immagine</th></f:if>
+						<th data-sortable="true" data-sorter="datesSorter" data-field="date" data-footer-formatter="dateFormatter">Data</th>
+						<th data-sortable="true" data-field="title" data-footer-formatter="titleFormatter">Titolo</th>
+						<f:if condition="{settings.descriptionInList}"><th data-sortable="true" data-field="description">Descrizione</th></f:if>
+						<f:if condition="{settings.displayPrice}"><th data-sortable="true" data-field="price" data-footer-formatter="priceFormatter">Prezzo</th></f:if>
+						<f:if condition="{settings.buttonInList}"><th></th></f:if>
+						<f:if condition="{settings.bookingPid}"><th></th></f:if>
+					</tr>
+				</thead>
+				<tbody>
+					<f:render partial="List" arguments="{settings: settings, indices: indices, searchParameter: searchParameter, searchMode: searchMode,contentObject:contentObject}" />
+				</tbody>
+			</table>
+			<script>
+				function dateFormatter() {
+					return 'Totale'
+				}
+				function titleFormatter(data) {
+					return data.length
+				}
+				function priceFormatter(data) {
+					var field = this.field
+					return '€' + data.map(function (row) {
+						return +row[field].substring(1)
+					}).reduce(function (sum, i) {
+						return sum + i
+					}, 0)
+				}
+				function datesSorter(a, b) {
+					var a_parts = a.split('.');
+					var b_parts = b.split('.');
+					var aa = a_parts[2] + a_parts[1] + a_parts[0];
+					var bb = b_parts[2] + b_parts[1] + b_parts[0];
+					if (aa < bb) return 1;
+					if (aa > bb) return -1;
+					return 0;
+				}
+			</script>
+		</f:then>
+		<f:else>
+			<div class="calendar-list">
+				<f:render partial="List" arguments="{settings: settings, indices: indices, searchParameter: searchParameter, searchMode: searchMode,contentObject:contentObject}" />
+			</div>
+		</f:else>
+	</f:if>
 </f:section>
