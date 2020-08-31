@@ -32,7 +32,7 @@ class IndexRepository extends AbstractRepository
      *
      * @var array
      */
-    protected $defaultOrderings = [
+    protected array $defaultOrderings = [
         'start_date' => QueryInterface::ORDER_ASCENDING,
         'start_time' => QueryInterface::ORDER_ASCENDING,
     ];
