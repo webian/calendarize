@@ -33,6 +33,8 @@ plugin.tx_calendarize {
 		descriptionInList = 0
 		imageInList = 0
 		buttonInList = 0
+		detailAsModal = 0
+		detailDisplayLatestDatesNumber = 0
 		displayAllDayText = 0
 		displayIcsButton = 1
 		displayPrice = 0

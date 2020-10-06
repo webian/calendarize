@@ -26,9 +26,16 @@
 		</td>
 
 		<td>
-			<c:link.index index="{index}">
-				<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
-			</c:link.index>
+			<f:if condition="{settings.detailAsModal}">
+				<f:then>
+					<f:render partial="Event/DetailModal" arguments="{index: index, event: event}"/>
+				</f:then>
+				<f:else>
+					<c:link.index index="{index}">
+						<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
+					</c:link.index>
+				</f:else>
+			</f:if>
 		</td>
 
 		<f:if condition="{settings.descriptionInList}">
