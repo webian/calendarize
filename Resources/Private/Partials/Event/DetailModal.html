@@ -1,0 +1,27 @@
+<f:variable name="startDate">{index.startDate -> f:format.date(format: 'Y-m-d')}</f:variable>
+<a href="#" data-toggle="modal" data-target=".event-detail-modal-{index.uid}"><f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" /></a>
+<div class="modal fade event-detail-modal-{index.uid}" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title">{event.title}</h3>
+			</div>
+			<div class="modal-body">
+				<f:if condition="{event.location}">
+				<p>
+					<f:if condition="{event.locationLink}">
+						<f:then><a href="{event.locationLink}" target="_blank">{event.location}</a></f:then>
+						<f:else>{event.location}</f:else>
+					</f:if>
+				</p>
+				</f:if>
+				<f:if condition="{event.description}"><p><f:format.html>{event.description}</f:format.html></p></f:if>
+				<f:if condition="{settings.detailDisplayLatestDatesNumber}">
+					<p>
+						<f:cObject typoscriptObjectPath="lib.calendarizeLatestDates" data="{uid: '{index.uid}', pid: '{settings.storagePid}', foreignUid:'{index.foreignUid}', startDate:'{startDate}', limit: '{settings.detailDisplayLatestDatesNumber}'}" />
+					</p>
+				</f:if>
+			</div>
+		</div>
+	</div>
+</div>

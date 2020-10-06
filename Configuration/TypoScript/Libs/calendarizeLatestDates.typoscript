@@ -1,0 +1,36 @@
+lib.calendarizeLatestDates = CONTENT
+lib.calendarizeLatestDates {
+	table = tx_calendarize_domain_model_index
+	select {
+		pidInList.data = field:pid
+		selectFields = tx_calendarize_domain_model_index.start_date AS startDate
+		join = tx_calendarize_domain_model_event ON tx_calendarize_domain_model_event.uid = tx_calendarize_domain_model_index.foreign_uid AND tx_calendarize_domain_model_index.foreign_table="tx_calendarize_domain_model_event"
+
+		where.cObject = COA
+		where.cObject {
+			10 = TEXT
+			10 {
+				data = field:foreignUid
+				intval = 1
+				wrap = tx_calendarize_domain_model_index.foreign_uid = |
+			}
+			20 = TEXT
+			20 {
+				data = field:startDate
+				noTrimWrap = | AND tx_calendarize_domain_model_index.start_date < '|'|
+			}
+		}
+
+		orderBy = tx_calendarize_domain_model_index.start_date DESC
+		max.data = field:limit
+	}
+	renderObj = COA
+	renderObj {
+		10 = TEXT
+		10 {
+			field = startDate
+			htmlSpecialChars = 1
+			noTrimWrap = ||<br>|
+		}
+	}
+}
