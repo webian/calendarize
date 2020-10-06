@@ -29,6 +29,7 @@ plugin.tx_calendarize {
 		}
 
 		# !ian: custom setting
+		storagePid = 0
 		listAsTable = 0
 		descriptionInList = 0
 		imageInList = 0
