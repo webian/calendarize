@@ -155,3 +155,5 @@ config.pageTitleProviders {
 		before = altPageTitle,record,seo
 	}
 }
+
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:calendarize/Configuration/TypoScript/Libs" extensions="typoscript">
