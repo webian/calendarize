@@ -31,6 +31,7 @@ plugin.tx_calendarize {
 		storagePid = 0
 		listAsTable = 0
 		descriptionInList = 0
+		descriptionStripTags = 1
 		imageInList = 0
 		buttonInList = 0
 		detailAsModal = 0
