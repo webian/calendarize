@@ -45,9 +45,16 @@
 					<f:format.nl2br>{event.abstract}</f:format.nl2br>
 				</f:then>
 				<f:else>
-					<f:format.crop maxCharacters="180" append="&nbsp;[...]">
-						<f:format.stripTags>{event.description}</f:format.stripTags>
-					</f:format.crop>
+					<f:if condition="{settings.descriptionStripTags}">
+						<f:then>
+							<f:format.crop maxCharacters="180" append="&nbsp;[...]">
+								<f:format.stripTags>{event.description}</f:format.stripTags>
+							</f:format.crop>
+						</f:then>
+						<f:else>
+							<f:format.html>{event.description}</f:format.html>
+						</f:else>
+					</f:if>
 				</f:else>
 			</f:if>
 		</td>
