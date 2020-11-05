@@ -83,14 +83,6 @@ class Event extends AbstractModel implements FeedInterface, SpeakingUrlInterface
     protected $organizerLink;
 
     /**
-     * Organizer link.
-     *
-     * @var float
-     * @DatabaseField(type="varchar", sql="varchar(255) DEFAULT '' NOT NULL")
-     */
-    protected $price;
-
-    /**
      * Import ID if the item is based on an ICS structure.
      *
      * @var string
@@ -544,25 +536,5 @@ class Event extends AbstractModel implements FeedInterface, SpeakingUrlInterface
     public function setOrganizerLink($organizerLink)
     {
         $this->organizerLink = $organizerLink;
-    }
-
-    /**
-     * Get price.
-     *
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set price.
-     *
-     * @param float $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
     }
 }
