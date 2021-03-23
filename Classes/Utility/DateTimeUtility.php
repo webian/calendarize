@@ -100,6 +100,16 @@ class DateTimeUtility
     }
 
     /**
+     * Time zone that is always UTC.
+     *
+     * @return \DateTimeZone
+     */
+    public static function getUtcTimeZone()
+    {
+        return new \DateTimeZone('UTC');
+    }
+
+    /**
      * Get the time seconds of the given date (TYPO3 Backend style).
      *
      * @param \DateTimeInterface $dateTime

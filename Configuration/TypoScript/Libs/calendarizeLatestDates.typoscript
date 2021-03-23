@@ -17,7 +17,8 @@ lib.calendarizeLatestDates {
 			20 = TEXT
 			20 {
 				data = field:startDate
-				noTrimWrap = | AND tx_calendarize_domain_model_index.start_date < '|'|
+				intval = 1
+				noTrimWrap = | AND tx_calendarize_domain_model_index.start_date < ||
 			}
 		}
 
